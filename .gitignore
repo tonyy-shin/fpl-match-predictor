@@ -1,0 +1,8 @@
+# .venv
+.venv/
+
+# Data files
+data/
+
+# Docs
+Docs/
