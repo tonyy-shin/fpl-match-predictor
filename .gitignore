@@ -6,3 +6,6 @@ data/
 
 # Docs
 Docs/
+
+#pycache
+src/python/__pycache__
