@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pandas as pd
 
-csv_file_path = "data/raw"
-parquet_file_path = "data/parquet"
+csv_file_path = "data/raw/football_data"
+parquet_file_path = "data/parquet/football_data"
 
 
 def _decode(raw: bytes, name: str) -> str:
@@ -50,3 +50,7 @@ def csv_to_parquet(csv_file_path, parquet_file_path):
         df.to_parquet(out, index=False)
         print(f"  wrote {out} ({len(df)} rows, {df.shape[1]} columns)")
     return parquet_file_path
+
+
+if __name__ == "__main__":
+    csv_to_parquet(csv_file_path, parquet_file_path)
