@@ -6,3 +6,6 @@ data/
 
 #pycache
 src/python/__pycache__
+
+# Database configuration
+database.ini
