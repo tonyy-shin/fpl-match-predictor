@@ -20,12 +20,27 @@ def extract_csv(url, output_path, start_year, end_year):
             if resp.content == b"":
                 print(f"No content found for {new_url}")
                 continue
-            out = Path(f"{output_path}/{season}.csv")
+            out = Path(f"{output_path}/pl_{season}.csv")
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(resp.content)
             print(f"Downloaded season {season} to {out}")
         except requests.RequestException as e:
             print(f"Failed to download {new_url}: {e}")
+    for start in range(start_year, end_year):
+            season = season_code(start)
+            new_url = f"{url}{season}/E1.csv"
+            try:
+                resp = requests.get(new_url, timeout=30)
+                resp.raise_for_status()
+                if resp.content == b"":
+                    print(f"No content found for {new_url}")
+                    continue
+                out = Path(f"{output_path}/ch_{season}.csv")
+                out.parent.mkdir(parents=True, exist_ok=True)
+                out.write_bytes(resp.content)
+                print(f"Downloaded season {season} to {out}")
+            except requests.RequestException as e:
+                print(f"Failed to download {new_url}: {e}")
 
 
 if __name__ == "__main__":
