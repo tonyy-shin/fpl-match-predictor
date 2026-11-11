@@ -1,11 +1,15 @@
 # .venv
 .venv/
 
+# .env
+.env
+
 # Data files
 data/
 
 #pycache
 src/python/__pycache__
+__pycache__
 
 # Database configuration
 database.ini

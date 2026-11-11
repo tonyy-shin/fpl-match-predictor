@@ -8,7 +8,7 @@ csv_file_path = "data/raw/football_data"
 parquet_file_path = "data/parquet/football_data"
 
 
-def _decode(raw: bytes, name: str) -> str:
+def decode(raw: bytes, name: str) -> str:
     try:
         return raw.decode("utf-8-sig")  # also strips a BOM if present
     except UnicodeDecodeError as e:
@@ -18,7 +18,7 @@ def _decode(raw: bytes, name: str) -> str:
 
 
 def _read_raw_csv(path: Path) -> pd.DataFrame:
-    text = _decode(path.read_bytes(), path.name)
+    text = decode(path.read_bytes(), path.name)
     rows = list(csv.reader(io.StringIO(text, newline="")))
     header = rows[0]
     width = max(len(r) for r in rows)
